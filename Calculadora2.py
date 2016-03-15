@@ -12,8 +12,7 @@ class Teclado():
             N1.set(N1.get() + '²')
         else:
             N1.set(N1.get() + '2')   
-        Operacoes.c_off()
-            
+        Operacoes.c_off()            
     def num3(*args):
         N1.set(N1.get() + '3')
         Operacoes.c_off()
@@ -47,7 +46,6 @@ class Teclado():
     def igu(*args):
         N1.set(N1.get() + '=')
         Operacoes.c_off()
-        
     def x(*args):
         N1.set(N1.get() + 'x')
         Operacoes.c_off()        
@@ -60,7 +58,7 @@ class Teclado():
             Operacoes.c_off()
         
 class Operacoes():
-    
+
     def som(*args):
         Operacoes.c_off()
         Visor = '' + N1.get()
@@ -114,6 +112,7 @@ class Operacoes():
 
     def div(*args):
         Operacoes.c_off()
+        Visor = '' + N1.get()
         if Visor.find('x') != -1:
             pass
         else:
@@ -144,6 +143,33 @@ class Operacoes():
                 Historico.set(Historico.get() + ' = ' + N1.get() + '\n')
                 N2.set('')
                 Operacao.set('')
+
+    def equ(*args):
+        Visor = '' + N1.get()
+        if Visor.find('²') != -1:
+            try:
+                A = int(Visor[:Visor.find('x²')])
+            except ValueError:
+                A = 1
+            B = int(Visor[ Visor.find('²')+1 : Visor.find('x', Visor.find('²'))])
+            C = int(Visor[ Visor.find('x', Visor.find('²'))+1 : Visor.find('=')])+int(Visor[ Visor.find('=')+1:])
+            D = B**2 - 4 * A * C
+            #D = B**2 – 4 * A * C parece igual a linha de cima mas não é
+            if D > 0:
+                X1 = ((-1*B)+sqrt(D))/2*A
+                X2 = ((-1*B)-sqrt(D))/2*A
+                Resultado = ('X\' = ',X1,'X\" = ',X2)
+                N1.set(Resultado)
+    
+            elif D == 0:
+                X = ((-1*B)+sqrt(D))/2*A
+                Resultado = ('X\' = ',X,'X\" = ',X)
+                N1.set(Resultado)
+            else:
+                N1.set('Não há raízes reais')
+            Historico.set(Historico.get() + Visor + ' = ' + N1.get() + '\n')                 
+        else:
+            pass
             
     def res(*args):
         Operacoes.c_off()
@@ -184,36 +210,9 @@ class Operacoes():
         else:
             COFF.set('\nOFF\n')
 
-    def equ(*args):
-        Visor = '' + N1.get()
-        if Visor.find('²') != -1:
-            try:
-                A = int(Visor[:Visor.find('x²')])
-            except ValueError:
-                A = 1
-            B = int(Visor[ Visor.find('²')+1 : Visor.find('x', Visor.find('²'))])
-            C = int(Visor[ Visor.find('x', Visor.find('²'))+1 : Visor.find('=')])+int(Visor[ Visor.find('=')+1:])
-            D = B**2 - 4 * A * C
-            #D = B**2 – 4 * A * C parece igual a linha de cima mas não é
-            if D > 0:
-                X1 = ((-1*B)+sqrt(D))/2*A
-                X2 = ((-1*B)-sqrt(D))/2*A
-                Resultado = ('X\' = ',X1,'X\" = ',X2)
-                N1.set(Resultado)
-    
-            elif D == 0:
-                X = ((-1*B)+sqrt(D))/2*A
-                Resultado = ('X\' = ',X,'X\" = ',X)
-                N1.set(Resultado)
-            else:
-                N1.set('Não há raízes reais')
-            Historico.set(Historico.get() + Visor + ' = ' + N1.get() + '\n')                 
-        else:
-            pass
-
 Janela = Tk()
 Janela.title('Calculadora Python 2.0 by Júlio Corp')
-
+Janela.grid()
 Janela.resizable(0,0)
 Calculadora = ttk.Frame(Janela, padding='50 50 50 50').grid()# ORDEM(): W N E S
 ttk.Style().configure("TButton", padding=10, relief="flat", background='black')
@@ -252,6 +251,8 @@ ttk.Button(Calculadora, text='\n/\n', command=Operacoes.div).grid(column=3, row=
 ttk.Button(Calculadora, text='\nX\n', command=Operacoes.mul).grid(column=3, row=3, sticky='W, E')
 ttk.Button(Calculadora, text='\n-\n', command=Operacoes.sub).grid(column=3, row=4, sticky='W, E')
 ttk.Button(Calculadora, text='\n+\n', command=Operacoes.som).grid(column=3, row=5, rowspan=2, sticky='N, S')
+
+ttk.Button(Calculadora, text='\n(Y)X\n').grid(column=0, row=1, rowspan=1, sticky='N, S')
 
 ttk.Label(Calculadora, text='Histórico de operações: ', anchor=W).grid(column=4, row=0, sticky='W, E')
 ttk.Label(Calculadora, textvariable=Historico, anchor=NW).grid(column=4, row=2, rowspan=5, sticky='N, S, W, E')
