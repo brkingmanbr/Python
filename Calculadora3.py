@@ -11,7 +11,7 @@ class Teclado():
         Operacoes.c_off()
     def num2(*args):
         Visor = str(N1.get()).strip()
-        if Visor.find('x') != -1:
+        if Visor.find('x') != -1 and Visor.find('²') == -1:
             N1.set(N1.get() + '²')
         else:
             N1.set(N1.get() + '2')   
