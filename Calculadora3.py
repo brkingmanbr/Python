@@ -192,10 +192,14 @@ class Operacoes():
 
         try:
             aux = Visor.find('=')+1
-            while Visor[aux] != '+' and Visor[aux] != '-':
+            try:
+                while Visor[aux] != '+' and Visor[aux] != '-':
+                    aux += 1
+                C1 = Visor[aux]
                 aux += 1
-            C1 = Visor[aux]
-            aux += 1
+            except IndexError:
+                aux = Visor.find('=')+1
+                C1 = '+'
             while Visor[aux] == ' ':
                 aux += 1   
             C+= int(C1+Visor[aux:])
@@ -203,7 +207,6 @@ class Operacoes():
             pass
        
         D = B**2 - 4 * A * C
-        #D = B**2 – 4 * A * C parece igual a linha de cima mas não é
         if D > 0:
             X1 = ((-1*B)+sqrt(D))/2*A
             X2 = ((-1*B)-sqrt(D))/2*A
@@ -212,8 +215,6 @@ class Operacoes():
         elif D == 0:
             X = ((-1*B)+sqrt(D))/2*A
             Resultado = 'X\' = '+str(X)+' X\" = '+str(X)
-            print('X\' = '+str(X)+'X\" = '+str(X))
-            print(type(Resultado))
             N1.set(Resultado)
         else:
             N1.set('Não há raízes reais')
@@ -261,7 +262,7 @@ class Operacoes():
         Historico.set('')
 
 Janela = Tk()
-Janela.title('Calculadora Python 2.0 by Júlio Corp')
+Janela.title('Calculadora Python 3.0 by Júlio Corp')
 Janela.grid()
 Janela.resizable(0,0)
 Calculadora = ttk.Frame(Janela, padding='50 50 50 50').grid()# ORDEM(): W N E S
