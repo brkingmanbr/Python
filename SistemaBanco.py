@@ -52,12 +52,13 @@ class Banco:
                   self.Contas[x].Numero,
                   self.Contas[x].Saldo)
             x+=1
-##global X
+
 X = Banco('Banco Do Trapézio Descendente')
 
 JanelaCadastro = tkinter.Tk()
 JanelaCadastro.title("Sistema Bancário")
-Cliente = Frame(JanelaCadastro).grid()
+
+Cliente = tkinter.LabelFrame(JanelaCadastro, text='Label').grid()
 
 Label(Cliente, text='Nome: ').grid(row=0 , column=0)
 Nome = tkinter.StringVar()
@@ -67,12 +68,17 @@ Label(Cliente, text='Sobrenome: ').grid(row=1 , column=0)
 Sobrenome = tkinter.StringVar()
 Entry(Cliente, textvariable=Sobrenome).grid(row=1 , column=1)
 
-Label(Cliente, text='Telefone: ', anchor='e').grid(row=2 , column=0)
+Label(Cliente, text='Telefone: ').grid(row=2 , column=0)
 Telefone = tkinter.StringVar()
 Entry(Cliente, textvariable=Telefone).grid(row=2 , column=1)
 
 Button(Cliente, text='Cadastrar',
        command= lambda: X.novoCliente(Nome.get(), Sobrenome.get(), Telefone.get())).grid(row=3, column=0, columnspan = 2, sticky='WE')
+
+var = tkinter.StringVar()
+tkinter.Message(JanelaCadastro, textvariable=var).grid()
+var.set("Hey!? How are you doing?")
+
 JanelaCadastro.mainloop()
 
 
