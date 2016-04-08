@@ -5,7 +5,6 @@ from random import randint
 b = []
 for x in range(0,5):
     b.append(randint(-100,100))
-    print('X======',x)
 a = []
 a.extend(b)
 
@@ -16,3 +15,4 @@ for elemento in a:
     if elemento > maior:
         maior = elemento
 Label(JP, text='Dentro desta lista:\n'+str(a)+'\nO maior elemento é: '+str(maior)).grid()
+JP.mainloop()
