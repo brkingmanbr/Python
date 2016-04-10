@@ -261,6 +261,12 @@ class Operacoes():
     def apa_his(*args):
         Historico.set('')
 
+    def sal_his(*args):
+        from tkinter import filedialog
+        save = open(filedialog.asksaveasfilename(),'w')
+        save.write(Historico.get())
+        save.close()
+
 Janela = Tk()
 Janela.title('Calculadora Python 3.0 by Júlio Corp')
 Janela.grid()
@@ -302,9 +308,10 @@ ttk.Button(Calculadora, text='\nX\n', command=Operacoes.mul).grid(column=3, row=
 ttk.Button(Calculadora, text='\n-\n', command=Operacoes.sub).grid(column=3, row=4, sticky='W, E')
 ttk.Button(Calculadora, text='\n+\n', command=Operacoes.som).grid(column=3, row=5, rowspan=2, sticky='N, S')
 
-ttk.Label(Calculadora, text='Histórico de operações: ', anchor=W).grid(column=4, row=1, sticky='W, E')
-ttk.Label(Calculadora, textvariable=Historico, anchor=NW).grid(column=4, row=2, rowspan=4, sticky='N, S, W, E')
+ttk.Label(Calculadora, text='Histórico de operações: ', anchor=W).grid(columnspan=2, column=4, row=1, sticky='W, E')
+ttk.Label(Calculadora, textvariable=Historico, anchor=NW).grid(columnspan=2, column=4, row=2, rowspan=4, sticky='N, S, W, E')
 ttk.Button(Calculadora, text='Apagar Histórico', command=Operacoes.apa_his).grid(column=4, row=6, rowspan=1, sticky='NSWE')
+ttk.Button(Calculadora, text='Salvar Histórico', command=Operacoes.sal_his).grid(column=5, row=6, rowspan=1, sticky='NSWE')
 
 Janela.bind('0', Teclado.num0),Janela.bind('1', Teclado.num1),Janela.bind('2', Teclado.num2)
 Janela.bind('3', Teclado.num3),Janela.bind('4', Teclado.num4),Janela.bind('5', Teclado.num5)
