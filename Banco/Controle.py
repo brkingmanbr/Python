@@ -1,23 +1,27 @@
-from Cliente import Cliente as Cli
-from Conta import Conta as Con
-from ContaEspecial import ContaEspecial as CE
-from Banco import Banco
+from Cliente import *
+from Conta import *
+from ContaEspecial import *
+from Banco import *
 class Controle():
     def __init__(self):
-        self.Cliente = Cli
-        self.Conta = Con
-        self.ContaEspecial = CE
-
+        self.Cliente = Cliente
+        self.Conta = Conta
+        self.ContaEspecial = ContaEspecial
+        self.Banco = Banco('Trapézio Descendente')
+        
+    def cliente(self):
+        self.Cliente = Cliente(
+            self.Cliente.nome,
+            self.Cliente.telefone)
     def cli_nome(self, nome):
         self.Cliente.nome = nome
     def cli_telefone(self, telefone):
         self.Cliente.telefone = telefone
 
     def conta(self, numero):
-        self.Conta.__init__(
+        self.Conta = Conta(
             self.Cliente,
-            self.Conta.numero)#,
-            #self.Conta.saldo)
+            self.Conta.numero)
     def conta_nome(self, nome_do_cliente):
         self.Conta.cliente.nome = nome_do_cliente
     def conta_numero(self, numero_da_conta):
@@ -26,7 +30,7 @@ class Controle():
         self.Conta.saldo = saldo
 
     def contaEspecial(self):
-        self.ContaEspecial.__init__(
+        self.ContaEspecial = ContaEspecial(
             self.ContaEspecial.cliente,
             self.ContaEspecial.numero,
             self.ContaEspecial.saldo)
@@ -38,8 +42,28 @@ class Controle():
         self.ContaEspecial.saldo = saldo
     def especial_limite(self, limite):
         self.ContaEspecial.limite = limite
-X = Controle()
-X.cli_nome("Wesley Safadão")
-X.cli_telefone(7112345678)
-X.conta_numero(123-4)
-X.conta()
+
+if __name__ == '__main__':
+    banco = Banco('Trapézio Descendente')
+    print("Banco operante!!")
+    c = Controle()
+    c.cli_nome('Jailson Mendes')
+    c.cli_telefone(123456)
+    c.cliente()
+    banco.novo_cliente(c.Cliente)
+    c.cli_nome('Italo Regulado')
+    c.cli_telefone(123456)
+    c.cliente()
+    banco.novo_cliente(c.Cliente)
+    c.cli_nome('Kléber Bam Bam')
+    c.cli_telefone(123456)
+    c.cliente()
+    banco.novo_cliente(c.Cliente)
+    from tkinter import *
+    root = Tk()
+    x = StringVar()
+    Label(root, textvariable=x).grid()
+    x.set(banco.lista_cliente())
+    print(x.get())
+    x.get()
+    root.mainloop()

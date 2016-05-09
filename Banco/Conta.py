@@ -1,22 +1,22 @@
 class Conta():
     def __init__(self, cliente, numero, saldo=0):
-        self.saldo = saldo
-        self.cliente = cliente
-        self.numero = numero
-        self.operacoes = []
+        self.__saldo = saldo
+        self.__cliente = cliente
+        self.__numero = numero
+        self.__operacoes = []
     def resumo(self):
-        print('CC Número: %s Saldo: %10.2f'
-              %(self.numero,self.saldo))
+        print('Nome %s CC Número: %s Saldo: %10.__2f'
+              %(self.__cliente.getNome(), self.__numero, self.__saldo))
     def saque(self, valor):
-        if self.saldo >= valor:
-            self.saldo -= valor
-            self.operacoes.append(["SAQUE", valor])
+        if self.__saldo >= valor:
+            self.__saldo -= valor
+            self.__operacoes.__append(["SAQUE", valor])
     def deposito(self, valor):
-        self.saldo += valor
-        self.operacoes.append(["DEPÓSITO", valor])
+        self.__saldo += valor
+        self.__operacoes.__append(["DEPÓSITO", valor])
     def extrato(self):
         print("Extrato CC Nº %s\n"
-              % self.numero)
-        for o in self.operacoes:
-            print("%10s %10.2f" % (o[0],o[1]))
-        print("\n     Saldo: %10.2f\n" % self.saldo)
+              % self.__numero)
+        for o in self.__operacoes:
+            print("%10s %10.__2f" % (o[0],o[1]))
+        print("\n     Saldo: %10.__2f\n" % self.__saldo)
