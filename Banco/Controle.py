@@ -8,6 +8,7 @@ class Controle():
         self.Conta = Conta
         self.ContaEspecial = ContaEspecial
         self.Banco = Banco('Trapézio Descendente')
+        print("Banco operante!!")
         
     def cliente(self):
         self.Cliente = Cliente(
@@ -44,26 +45,27 @@ class Controle():
         self.ContaEspecial.limite = limite
 
 if __name__ == '__main__':
-    banco = Banco('Trapézio Descendente')
-    print("Banco operante!!")
     c = Controle()
     c.cli_nome('Jailson Mendes')
     c.cli_telefone(123456)
     c.cliente()
-    banco.novo_cliente(c.Cliente)
+    c.Banco.novo_cliente(c.Cliente)
     c.cli_nome('Italo Regulado')
     c.cli_telefone(123456)
     c.cliente()
-    banco.novo_cliente(c.Cliente)
+    c.Banco.novo_cliente(c.Cliente)
     c.cli_nome('Kléber Bam Bam')
     c.cli_telefone(123456)
     c.cliente()
-    banco.novo_cliente(c.Cliente)
+    c.Banco.novo_cliente(c.Cliente)
     from tkinter import *
     root = Tk()
     x = StringVar()
     Label(root, textvariable=x).grid()
-    x.set(banco.lista_cliente())
-    print(x.get())
+    print("antes")
+    x.set(c.Banco.lista_cliente())
+    print("depois")
+    print("lista:",c.Banco.LISTA)
+    print("stringvar:",x.get())
     x.get()
     root.mainloop()

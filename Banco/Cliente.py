@@ -16,3 +16,4 @@ if __name__ == '__main__':
     c = Cliente('Jailson Mendes', 123456)
     print(c.resumo())
     print(c.getNome())
+    print(c.getTelefone())

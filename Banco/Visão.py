@@ -4,7 +4,7 @@ import tkinter as tk
 from tkinter.ttk import *
 
 jp = tk.Tk()
-jp.geometry('500x300')
+#jp.geometry('500x300')
 jp.title("Banco do Trapézio Descendente")
 jp.grid()
 jp.resizable(True,True)
@@ -21,15 +21,18 @@ abas.grid()
 Label(abaCliente, text='Nome: ').grid(row =0, column = 0); nome = tk.StringVar(); Entry(abaCliente, textvariable=nome).grid(row = 0, column = 1)
 Label(abaCliente, text='Telefone: ').grid(row =1, column = 0); telefone = tk.StringVar(); Entry(abaCliente, textvariable=telefone).grid(row = 1, column = 1)
 def addCliente(nome, telefone):
+    print("Nome: %s \nTelefone %s"%(nome, telefone))
     c.cli_nome(nome)
     c.cli_telefone(telefone)
     c.Banco.novo_cliente(c.Cliente)
-    c.Banco.lista_cliente()
+    x = c.Banco.lista_cliente()
+    print('Nome: %s, Telefone: %s, Banco.lista_cliente() %s'%(nome, telefone, c.Banco.LISTA))
     print('1')
     print(x)
     print('1')
     clientes.set(c.Banco.lista_cliente())
     print('2')
+    
 Button(abaCliente, text='Adicionar Cliente', command=lambda:addCliente(nome.get(), telefone.get())).grid(row = 2, column = 0, columnspan = 2, sticky='we')
 clientes = tk.StringVar(); Label(abaCliente, textvariable=clientes).grid(row =3, column = 0, columnspan = 2)
 
