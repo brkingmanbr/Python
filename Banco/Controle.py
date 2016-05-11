@@ -8,12 +8,12 @@ class Controle():
         self.Conta = Conta
         self.ContaEspecial = ContaEspecial
         self.Banco = Banco('Trapézio Descendente')
-        print("Banco operante!!")
         
     def cliente(self):
         self.Cliente = Cliente(
             self.Cliente.nome,
             self.Cliente.telefone)
+        return self.Cliente
     def cli_nome(self, nome):
         self.Cliente.nome = nome
     def cli_telefone(self, telefone):
@@ -43,6 +43,15 @@ class Controle():
         self.ContaEspecial.saldo = saldo
     def especial_limite(self, limite):
         self.ContaEspecial.limite = limite
+    def lista_cliente(self):
+            lista = ''
+            for c in self.clientes:
+                print("c: ",c)
+                lista = lista+'\n'+str(
+                        c.getNome()
+                        ) 
+            self.LISTA = lista
+            return lista
 
 if __name__ == '__main__':
     c = Controle()
