@@ -1,25 +1,40 @@
-import tkinter as tk
+from tkinter import *
 from tkinter.ttk import *
+from PIL import Image, ImageTk
 
-def login():
-    pass
+class TelaLogin(Frame):
+	def __init__(self, master = None):
+		Frame.__init__(self, master)
+		
+		self.master = master
 
-jp = tk.Tk()
-jp.title('SGPS - Login')
-#jp.geometry('333x325')
-logo = tk.PhotoImage(file="aang.png")
-jp.configure(bg='#334353')
-jp.resizable(False,False)
-jp.columnconfigure(0, weight=150)
+		self.init_window()
 
-bg = Frame(jp).grid(row=0)
-Label(bg, image=logo).grid(row=0, column=0, columnspan=2)
+	def init_window(self):
+		self.master.title("SGPS - Login")
+		self.master.resizable(False,False)
+		self.grid() #pack(fill=BOTH, expand=1)
 
-fp = Frame(jp).grid(row=1)
-UsuarioL = Label(fp, text='Username: ', anchor='w').grid(row=1, column=0, sticky='we')
-UsuarioE = Entry(fp).grid(row=1, column=1, sticky='we')
-SenhaL = Label(fp, text='Password: ', anchor='w').grid(row=2, column=0, sticky='we')
-SenhaE = Entry(fp).grid(row=2, column=1, sticky='we')
-Login = Button(fp, text='Login', command=login).grid(row=3, columnspan=2, sticky='we')
+		load = Image.open('aang.png')
+		render = ImageTk.PhotoImage(load)
+		img = Label(self, image=render)
+		img.image = render
+		img.grid(row=0, column=0, columnspan=2)
 
-jp.mainloop()
+	
+		UsuarioL = Label(self, text='Username: ', anchor='w').grid(row=1, column=0, sticky='we')
+		UsuarioE = Entry(self).grid(row=1, column=1, sticky='we')
+		SenhaL = Label(self, text='Password: ', anchor='w').grid(row=2, column=0, sticky='we')
+		SenhaE = Entry(self).grid(row=2, column=1, sticky='we')
+		Login = Button(self, text='Login', command=self.verifica_login).grid(row=3, columnspan=2, sticky='we')
+	
+	def verifica_login(self):
+		print('s')
+
+	for x in range(1, 10): print('x: ',x)
+
+if __name__ == '__main__':
+	root = Tk()
+	#root.geometry("333x320")
+	Login = TelaLogin(root)
+	root.mainloop()

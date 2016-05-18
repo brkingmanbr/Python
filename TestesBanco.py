@@ -4,6 +4,7 @@ parametros = {'user':'root',
               'host':'localhost',
               'passwd':'',
               'database':'casa'}
+
 Banco = pymysql.connect(**parametros)
 
 c = con.cursor()

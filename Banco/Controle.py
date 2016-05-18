@@ -29,7 +29,7 @@ class Controle():
         self.Conta.numero = numero_da_conta
     def conta_saldo(self, saldo):
         self.Conta.saldo = saldo
-
+        
     def contaEspecial(self):
         self.ContaEspecial = ContaEspecial(
             self.ContaEspecial.cliente,
@@ -47,10 +47,7 @@ class Controle():
             lista = ''
             for c in self.clientes:
                 print("c: ",c)
-                lista = lista+'\n'+str(
-                        c.getNome()
-                        ) 
-            self.LISTA = lista
+                lista = lista+'\n'+str(c.getNome())
             return lista
 
 if __name__ == '__main__':

@@ -10,14 +10,17 @@ class Banco():
     def lista_cliente(self):
         lista = ''
         for c in self.clientes:
-            lista +='\n%s Telefone: %s'%(c.getNome(), c.getTelefone())
+            lista +='\n%s Tel: %s'%(c.getNome(), c.getTelefone())
         return lista
     def busca_cliente(self, nome):
+        lista = []
+        for elemento in self.clientes:
+            lista.append(elemento.getNome())
         try:
-            return self.clientes.index(nome)
+            return self.clientes[lista.index(nome)].getNome()
         except ValueError:
-            return "Nenhum"
-    
+            return False
+        
     def abre_conta(self, conta):
         self.contas.append(conta)
     def lista_conta(self):
