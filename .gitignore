@@ -1,2 +1,4 @@
 *.pyc
 teste.py
+*.iml
+*.xml

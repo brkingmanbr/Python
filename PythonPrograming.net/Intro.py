@@ -7,7 +7,6 @@ class Window(Frame):
 		Frame.__init__(self, master)
 		
 		self.master = master
-
 		self.init_window()
 
 	def init_window(self):
@@ -46,5 +45,8 @@ class Window(Frame):
 	def client_exit(self):
 		exit()
 
-
-
+if __name__ == '__main__':
+	root = Tk()
+	#root.geometry("333x320")
+	Login = Window(root)
+	root.mainloop()

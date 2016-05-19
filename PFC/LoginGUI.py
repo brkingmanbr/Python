@@ -13,25 +13,27 @@ class TelaLogin(Frame):
 	def init_window(self):
 		self.master.title("SGPS - Login")
 		self.master.resizable(False,False)
-		self.grid() #pack(fill=BOTH, expand=1)
+		selfpack(fill=BOTH, expand=1)
 
 		load = Image.open('aang.png')
 		render = ImageTk.PhotoImage(load)
 		img = Label(self, image=render)
 		img.image = render
-		img.grid(row=0, column=0, columnspan=2)
+		img#.grid(row=0, column=0, columnspan=2)
 
 	
-		UsuarioL = Label(self, text='Username: ', anchor='w').grid(row=1, column=0, sticky='we')
-		UsuarioE = Entry(self).grid(row=1, column=1, sticky='we')
-		SenhaL = Label(self, text='Password: ', anchor='w').grid(row=2, column=0, sticky='we')
-		SenhaE = Entry(self).grid(row=2, column=1, sticky='we')
-		Login = Button(self, text='Login', command=self.verifica_login).grid(row=3, columnspan=2, sticky='we')
+		UsuarioL = Label(self, text='Username: ', anchor='w')#.grid(row=1, column=0, sticky='we')
+		UsuarioL.pack()
+		UsuarioL.place(x)
+		UsuarioE = Entry(self)#.grid(row=1, column=1, sticky='we')
+		SenhaL = Label(self, text='Password: ', anchor='w')#.grid(row=2, column=0, sticky='we')
+		SenhaE = Entry(self)#.grid(row=2, column=1, sticky='we')
+		Login = Button(self, text='Login', command=self.verifica_login)#.grid(row=3, columnspan=2, sticky='we')
 	
-	def verifica_login(self):
+	def verifica_login(self, login, senha):
+		
 		print('s')
 
-	for x in range(1, 10): print('x: ',x)
 
 if __name__ == '__main__':
 	root = Tk()
