@@ -45,7 +45,7 @@ if __name__ == '__main__':
     file.add_command(label="Editar Turmas") #deve abrir o CRUD de turmas
     login = Menu(menu)
     menu.add_cascade(label="Login", menu=login)
-    login.add_command(label="Cronograma")
-    menu.add_command(label="Cronograma", command=lambda:print('teste funcionou'))
+    login.add_command(label="Alterar senha")
+    menu.add_command(label="Editar Cronograma")
     JP.mainloop()
     exit()
