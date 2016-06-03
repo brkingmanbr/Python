@@ -45,7 +45,8 @@ if __name__ == '__main__':
     file.add_command(label="Editar Turmas") #deve abrir o CRUD de turmas
     login = Menu(menu)
     menu.add_cascade(label="Login", menu=login)
-    login.add_command(label="Alterar senha")
-    menu.add_command(label="Editar Cronograma")
+    aang = PhotoImage(file='aang.png')
+    login.add_command(label="Alterar senha", image=aang, command=lambda: print('XX'))
+    menu.add_cascade(label="Cronograma", command=lambda: print('XX'))
     JP.mainloop()
     exit()

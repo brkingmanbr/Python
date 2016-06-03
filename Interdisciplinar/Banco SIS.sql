@@ -45,4 +45,4 @@ CREATE TABLE Cronograma (
         REFERENCES professor (matricula),
     FOREIGN KEY (coordenador)
         REFERENCES Coordenador (id_coor)
-);
+);ba
